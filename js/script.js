@@ -4,38 +4,57 @@ const gameNumber = document.getElementById(`game-number`);
 const display = document.getElementById(`display-counter`);
 
 let secondsGame = 5;
-const userNumber = 0;
+let userNumber = 0;
 let userNumberselect = ``;
 
 const countdown = setInterval(function(){
-    display.innerText = --secondsGame;
+    display.innerText = -- secondsGame;
     if(secondsGame === 0){
-        clearInterval(countdown);
+        clearTimeout(countdown);
         gameNumber.classList.add(`d-none`);
-        // while(userNumber <= 5){
-        //  userNumberselect = prompt(`che numero della serie che hai appena visto ti ricordi?`)
-        //  userNumber++;
-        //     }
-     
+    
     }
+    console.log(secondsGame);
    
 },1000);
 
 
-let randomNumber = 5;
+ let randomChoice = 5;
 
-let varNum = [];
-for(let i=0;i<randomNumber;i++){
-    const getRandomnumber = Math.floor(Math.random()*100 -1);
-    console.log(getRandomnumber);
-    varNum += ` ` + getRandomnumber;
-   gameNumber.innerText = varNum;
-   while(!varNum.includes(getRandomnumber)){
-    varNum.push(getRandomnumber);
-   }
+function generateRandomNumbers(){
+    const randomArray = [] 
+    while(randomArray.length < randomChoice)
+    {
+   let randomNumber;
+    
+    do{
+        randomNumber = Math.floor(Math.random()*100 -1);
+    }
+    while(randomArray.includes(randomNumber))
+    randomArray.push(randomNumber);
+}
+    return randomArray;
 
 }
-gameNumber.innerText = varNum;
+const allRandomnumber = generateRandomNumbers(1,100);
+gameNumber.innerHTML = `la serie di numeri estratta è :  ${allRandomnumber} `;
+
+
+
+
+
+// let varNum = [];
+// for(let i=0;i<randomNumber;i++){
+//     const getRandomnumber = Math.floor(Math.random()*100 -1);
+//     console.log(getRandomnumber);
+//     varNum += ` ` + getRandomnumber;
+//    gameNumber.innerText = varNum;
+//    while(!varNum.includes(getRandomnumber)){
+//     varNum.push(getRandomnumber);
+//    }
+
+// }
+// gameNumber.innerText = varNum;
 
 
 // let userNumber = ``;
