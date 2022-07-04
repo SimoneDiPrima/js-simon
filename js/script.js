@@ -3,17 +3,23 @@
 const gameNumber = document.getElementById(`game-number`);
 const display = document.getElementById(`display-counter`);
 
-let secondsGame = 5;
+let secondsGame = 6;
 let userNumber = 0;
 let userNumberselect = ``;
+let secondTIme;
+let promptDown;
+
 
 const countdown = setInterval(function(){
-    display.innerText = -- secondsGame;
+    display.innerText = --secondsGame;
     if(secondsGame === 0){
-        clearTimeout(countdown);
+        display.classList.add(`d-none`);
         gameNumber.classList.add(`d-none`);
-    
+        clearInterval(countdown);
+        const promptDown = setTimeout(promptMessage,500);
+        const alertDown = setTimeout(alertMessage,1000);
     }
+    clearTimeout(promptDown);
     console.log(secondsGame);
    
 },1000);
@@ -28,7 +34,7 @@ function generateRandomNumbers(){
    let randomNumber;
     
     do{
-        randomNumber = Math.floor(Math.random()*100 -1);
+        randomNumber = Math.floor(Math.random()*100 + 1);
     }
     while(randomArray.includes(randomNumber))
     randomArray.push(randomNumber);
@@ -40,34 +46,16 @@ const allRandomnumber = generateRandomNumbers(1,100);
 gameNumber.innerHTML = `la serie di numeri estratta è :  ${allRandomnumber} `;
 
 
+function promptMessage(){
+   const promptArraynumber = [];
+   while(promptArraynumber.length < randomChoice){
+    promptNumber = prompt(`dimmi un numero della serie:`)
+    promptArraynumber.push(promptNumber);
+   }
+   console.log(promptArraynumber);
+   return promptArraynumber;
+}
+function alertMessage(){
+ alert(`complimenti hai vinto!`)
+ }
 
-
-
-// let varNum = [];
-// for(let i=0;i<randomNumber;i++){
-//     const getRandomnumber = Math.floor(Math.random()*100 -1);
-//     console.log(getRandomnumber);
-//     varNum += ` ` + getRandomnumber;
-//    gameNumber.innerText = varNum;
-//    while(!varNum.includes(getRandomnumber)){
-//     varNum.push(getRandomnumber);
-//    }
-
-// }
-// gameNumber.innerText = varNum;
-
-
-// let userNumber = ``;
-// let userArray = [ ];
-
-// const promptdown = setTimeout((function(){
-//    for(i = 0; i < randomNumber ; i++)
-//    {
-//     const userNumber =``+ prompt(`che numero ti ricordi??`)
-//     userArray.push(userNumber);
-    
-//    }
-   
-// }),2000);
-// console.log(userArray);
-    
