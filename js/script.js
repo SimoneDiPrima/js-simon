@@ -4,13 +4,20 @@ const gameNumber = document.getElementById(`game-number`);
 const display = document.getElementById(`display-counter`);
 
 let secondsGame = 5;
+const userNumber = 0;
+let userNumberselect = ``;
 
 const countdown = setInterval(function(){
     display.innerText = --secondsGame;
     if(secondsGame === 0){
         clearInterval(countdown);
         gameNumber.classList.add(`d-none`);
-       }
+        // while(userNumber <= 5){
+        //  userNumberselect = prompt(`che numero della serie che hai appena visto ti ricordi?`)
+        //  userNumber++;
+        //     }
+     
+    }
    
 },1000);
 
@@ -30,7 +37,6 @@ for(let i=0;i<randomNumber;i++){
 }
 gameNumber.innerText = varNum;
 
-gameNumber.classList.add
 
 // let userNumber = ``;
 // let userArray = [ ];
