@@ -1,6 +1,17 @@
 
 
 const gameNumber = document.getElementById(`game-number`);
+const display = document.getElementById(`display-counter`);
+
+let secondsGame = 30;
+
+const countdown = setInterval(function(){
+    display.innerText = --secondsGame;
+    if(secondsGame === 0){
+        clearInterval(countdown);
+        
+    }
+},1000);
 
 let randomNumber = 5;
 
