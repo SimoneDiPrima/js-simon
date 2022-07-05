@@ -2,60 +2,73 @@
 
 const gameNumber = document.getElementById(`game-number`);
 const display = document.getElementById(`display-counter`);
-
-let secondsGame = 6;
+const paragraph = document.getElementById(`paragraph`);
+const max = 99;
+const min = 1;
+let secondsGame = 30;
 let userNumber = 0;
-let userNumberselect = ``;
-let secondTIme;
-let promptDown;
+ randomChoice = 5;
 
 
+display.innerText = secondsGame;
 const countdown = setInterval(function(){
-    display.innerText = --secondsGame;
+
     if(secondsGame === 0){
         display.classList.add(`d-none`);
         gameNumber.classList.add(`d-none`);
+        paragraph.classList.add(`d-none`);
         clearInterval(countdown);
-        const promptDown = setTimeout(promptMessage,500);
-        const alertDown = setTimeout(alertMessage,1000);
+       
     }
-    clearTimeout(promptDown);
+    else{display.innerText = --secondsGame}
     console.log(secondsGame);
    
 },1000);
+setTimeout(() => {
+   const promptArraynumber = [];
+    while(promptArraynumber.length < randomChoice){
+    const numbers = userPromptnumber(min, max);
+    if(!promptArraynumber.includes(numbers)){
+        promptArraynumber.push(numbers);
+    }}
+   const userArraycorrect = []
 
+for(let i = 0 ; i < randomChoice;i++){
+    if(allRandomnumber.includes(promptArraynumber[i])){
+       userArraycorrect.push(promptArraynumber[i]);
+    }
+    }
+    alert(`Bravo!i numeri che hai indovinato sono:(${userArraycorrect}) hai totalizzato ${userArraycorrect.length} punti!`);
+},32200)
 
- let randomChoice = 5;
 
 function generateRandomNumbers(){
-    const randomArray = [] 
+    const randomArray = [ ] 
     while(randomArray.length < randomChoice)
     {
-   let randomNumber;
-    
-    do{
-        randomNumber = Math.floor(Math.random()*100 + 1);
-    }
-    while(randomArray.includes(randomNumber))
-    randomArray.push(randomNumber);
-}
+        const randomNumbers = Math.floor(Math.random()*max + 1 - min)+min;
+    if(!randomArray.includes(randomNumbers))
+        {randomArray.push(randomNumbers);}
+    }   
     return randomArray;
-
 }
 const allRandomnumber = generateRandomNumbers(1,100);
-gameNumber.innerHTML = `la serie di numeri estratta è :  ${allRandomnumber} `;
+let items = ` `;
 
-
-function promptMessage(){
-   const promptArraynumber = [];
-   while(promptArraynumber.length < randomChoice){
-    promptNumber = prompt(`dimmi un numero della serie:`)
-    promptArraynumber.push(promptNumber);
-   }
-   console.log(promptArraynumber);
-   return promptArraynumber;
+for(let i = 0; i < randomChoice ; i++){
+    items +=  `<li>${allRandomnumber[i]}</li>`;
 }
-function alertMessage(){
- alert(`complimenti hai vinto!`)
- }
+gameNumber.innerHTML = items;
 
+
+function userPromptnumber(){
+  let userPromptnumber;
+
+  while(isNaN(userPromptnumber)||userPromptnumber < 1 || userPromptnumber > 100){
+    userPromptnumber = parseInt(prompt(`che numero ti ricordi tra quelli appena estratti??`))
+  }
+
+console.log(userPromptnumber)
+  return userPromptnumber;
+   
+}
