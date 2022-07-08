@@ -9,7 +9,6 @@ let secondsGame = 30;
 let userNumber = 0;
  randomChoice = 5;
 
-
 display.innerText = secondsGame;
 const countdown = setInterval(function(){
 
